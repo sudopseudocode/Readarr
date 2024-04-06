@@ -193,6 +193,7 @@
   "CustomFormatScore": "Custom Format Score",
   "CustomFormatSettings": "Custom Format Settings",
   "CustomFormats": "Custom Formats",
+  "CustomFormatsSettingsTriggerInfo": "A Custom Format will be applied to a release or file when it matches at least one of each of the different condition types chosen.",
   "CustomFormatsSpecificationFlag": "Flag",
   "CustomFormatsSpecificationRegularExpression": "Regular Expression",
   "CustomFormatsSpecificationRegularExpressionHelpText": "Custom Format RegEx is Case Insensitive",
