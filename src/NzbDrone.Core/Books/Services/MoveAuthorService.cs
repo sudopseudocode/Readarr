@@ -1,6 +1,7 @@
 using System.IO;
 using NLog;
 using NzbDrone.Common.Disk;
+using NzbDrone.Common.Extensions;
 using NzbDrone.Common.Instrumentation.Extensions;
 using NzbDrone.Core.Books.Commands;
 using NzbDrone.Core.Books.Events;
@@ -53,6 +54,12 @@ namespace NzbDrone.Core.Books
             else
             {
                 _logger.ProgressInfo("Moving {0} from '{1}' to '{2}'", author.Name, sourcePath, destinationPath);
+            }
+
+            if (sourcePath.PathEquals(destinationPath))
+            {
+                _logger.ProgressInfo("{0} is already in the specified location '{1}'.", author, destinationPath);
+                return;
             }
 
             try
