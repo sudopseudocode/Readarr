@@ -6,6 +6,22 @@ import createMultiAuthorsSelector from 'Store/Selectors/createMultiAuthorsSelect
 import translate from 'Utilities/String/translate';
 import styles from './QueuedTaskRowNameCell.css';
 
+function formatTitles(titles: string[]) {
+  if (!titles) {
+    return null;
+  }
+
+  if (titles.length > 11) {
+    return (
+      <span title={titles.join(', ')}>
+        {titles.slice(0, 10).join(', ')}, {titles.length - 10} more
+      </span>
+    );
+  }
+
+  return <span>{titles.join(', ')}</span>;
+}
+
 export interface QueuedTaskRowNameCellProps {
   commandName: string;
   body: CommandBody;
@@ -32,7 +48,7 @@ export default function QueuedTaskRowNameCell(
       <span className={styles.commandName}>
         {commandName}
         {sortedAuthors.length ? (
-          <span> - {sortedAuthors.map((a) => a.authorName).join(', ')}</span>
+          <span> - {formatTitles(sortedAuthors.map((a) => a.authorName))}</span>
         ) : null}
       </span>
 
