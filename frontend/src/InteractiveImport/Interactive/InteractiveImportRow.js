@@ -47,14 +47,16 @@ class InteractiveImportRow extends Component {
       author,
       book,
       foreignEditionId,
-      quality
+      quality,
+      size
     } = this.props;
 
     if (
       author &&
       book != null &&
       foreignEditionId &&
-      quality
+      quality &&
+      size > 0
     ) {
       this.props.onSelectedChange({ id, value: true });
     }
