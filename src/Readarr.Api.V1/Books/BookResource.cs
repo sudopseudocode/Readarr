@@ -7,6 +7,7 @@ using NzbDrone.Core.Books;
 using NzbDrone.Core.MediaCover;
 using Readarr.Api.V1.Author;
 using Readarr.Http.REST;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Readarr.Api.V1.Books
 {
@@ -38,6 +39,7 @@ namespace Readarr.Api.V1.Books
 
         //Hiding this so people don't think its usable (only used to set the initial state)
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [SwaggerIgnore]
         public bool Grabbed { get; set; }
     }
 
