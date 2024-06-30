@@ -5,11 +5,11 @@ namespace NzbDrone.Core.Validation
 {
     public class QualityProfileExistsValidator : PropertyValidator
     {
-        private readonly IProfileService _profileService;
+        private readonly IQualityProfileService _qualityProfileService;
 
-        public QualityProfileExistsValidator(IProfileService profileService)
+        public QualityProfileExistsValidator(IQualityProfileService qualityProfileService)
         {
-            _profileService = profileService;
+            _qualityProfileService = qualityProfileService;
         }
 
         protected override string GetDefaultMessageTemplate() => "Quality Profile does not exist";
@@ -21,7 +21,7 @@ namespace NzbDrone.Core.Validation
                 return true;
             }
 
-            return _profileService.Exists((int)context.PropertyValue);
+            return _qualityProfileService.Exists((int)context.PropertyValue);
         }
     }
 }

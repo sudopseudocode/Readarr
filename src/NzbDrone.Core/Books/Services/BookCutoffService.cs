@@ -15,18 +15,18 @@ namespace NzbDrone.Core.Books
     public class BookCutoffService : IBookCutoffService
     {
         private readonly IBookRepository _bookRepository;
-        private readonly IProfileService _profileService;
+        private readonly IQualityProfileService _qualityProfileService;
 
-        public BookCutoffService(IBookRepository bookRepository, IProfileService profileService)
+        public BookCutoffService(IBookRepository bookRepository, IQualityProfileService qualityProfileService)
         {
             _bookRepository = bookRepository;
-            _profileService = profileService;
+            _qualityProfileService = qualityProfileService;
         }
 
         public PagingSpec<Book> BooksWhereCutoffUnmet(PagingSpec<Book> pagingSpec)
         {
             var qualitiesBelowCutoff = new List<QualitiesBelowCutoff>();
-            var profiles = _profileService.All();
+            var profiles = _qualityProfileService.All();
 
             //Get all items less than the cutoff
             foreach (var profile in profiles)

@@ -14,10 +14,10 @@ namespace Readarr.Api.V1.Profiles.Quality
     [V1ApiController]
     public class QualityProfileController : RestController<QualityProfileResource>
     {
-        private readonly IProfileService _qualityProfileService;
+        private readonly IQualityProfileService _qualityProfileService;
         private readonly ICustomFormatService _formatService;
 
-        public QualityProfileController(IProfileService qualityProfileService, ICustomFormatService formatService)
+        public QualityProfileController(IQualityProfileService qualityProfileService, ICustomFormatService formatService)
         {
             _qualityProfileService = qualityProfileService;
             _formatService = formatService;

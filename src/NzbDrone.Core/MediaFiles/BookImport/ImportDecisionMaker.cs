@@ -53,7 +53,7 @@ namespace NzbDrone.Core.MediaFiles.BookImport
         private readonly IAugmentingService _augmentingService;
         private readonly IIdentificationService _identificationService;
         private readonly IRootFolderService _rootFolderService;
-        private readonly IProfileService _qualityProfileService;
+        private readonly IQualityProfileService _qualityProfileService;
         private readonly Logger _logger;
 
         public ImportDecisionMaker(IEnumerable<IImportDecisionEngineSpecification<LocalBook>> trackSpecifications,
@@ -63,7 +63,7 @@ namespace NzbDrone.Core.MediaFiles.BookImport
                                    IAugmentingService augmentingService,
                                    IIdentificationService identificationService,
                                    IRootFolderService rootFolderService,
-                                   IProfileService qualityProfileService,
+                                   IQualityProfileService qualityProfileService,
                                    Logger logger)
         {
             _trackSpecifications = trackSpecifications;
