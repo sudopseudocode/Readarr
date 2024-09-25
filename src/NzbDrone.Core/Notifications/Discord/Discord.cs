@@ -25,15 +25,15 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnGrab(GrabMessage message)
         {
             var embeds = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Description = message.Message,
-                                      Title = message.Author.Name,
-                                      Text = message.Message,
-                                      Color = (int)DiscordColors.Warning
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Description = message.Message,
+                    Title = message.Author.Name,
+                    Text = message.Message,
+                    Color = (int)DiscordColors.Warning
+                }
+            };
             var payload = CreatePayload($"Grabbed: {message.Message}", embeds);
 
             _proxy.SendPayload(payload, Settings);
@@ -43,7 +43,7 @@ namespace NzbDrone.Core.Notifications.Discord
         {
             var attachments = new List<Embed>
             {
-                new Embed
+                new ()
                 {
                     Description = message.Message,
                     Title = message.Author.Name,
@@ -59,12 +59,12 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnRename(Author author, List<RenamedBookFile> renamedFiles)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Title = author.Name,
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = author.Name,
+                }
+            };
 
             var payload = CreatePayload("Renamed", attachments);
 
@@ -74,21 +74,21 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnAuthorAdded(Author author)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Title = author.Name,
-                                      Fields = new List<DiscordField>()
-                                      {
-                                          new DiscordField()
-                                          {
-                                              Name = "Links",
-                                              Value = string.Join(" / ", author.Metadata.Value.Links.Select(link => $"[{link.Name}]({link.Url})"))
-                                          }
-                                      },
-                                  }
-                              };
-            var payload = CreatePayload($"Author Added", attachments);
+            {
+                new ()
+                {
+                    Title = author.Name,
+                    Fields = new List<DiscordField>()
+                    {
+                        new ()
+                        {
+                            Name = "Links",
+                            Value = string.Join(" / ", author.Metadata.Value.Links.Select(link => $"[{link.Name}]({link.Url})"))
+                        }
+                    },
+                }
+            };
+            var payload = CreatePayload("Author Added", attachments);
 
             _proxy.SendPayload(payload, Settings);
         }
@@ -96,13 +96,13 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnAuthorDelete(AuthorDeleteMessage deleteMessage)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Title = deleteMessage.Author.Name,
-                                      Description = deleteMessage.DeletedFilesMessage
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = deleteMessage.Author.Name,
+                    Description = deleteMessage.DeletedFilesMessage
+                }
+            };
 
             var payload = CreatePayload("Author Deleted", attachments);
 
@@ -112,13 +112,13 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnBookDelete(BookDeleteMessage deleteMessage)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                    Title = $"${deleteMessage.Book.Author.Value.Name} - ${deleteMessage.Book.Title}",
-                                    Description = deleteMessage.DeletedFilesMessage
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = $"{deleteMessage.Book.Author.Value.Name} - ${deleteMessage.Book.Title}",
+                    Description = deleteMessage.DeletedFilesMessage
+                }
+            };
 
             var payload = CreatePayload("Book Deleted", attachments);
 
@@ -128,13 +128,13 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnBookFileDelete(BookFileDeleteMessage deleteMessage)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                    Title = $"${deleteMessage.Book.Author.Value.Name} - ${deleteMessage.Book.Title} - file deleted",
-                                    Description = deleteMessage.BookFile.Path
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = $"{deleteMessage.Book.Author.Value.Name} - ${deleteMessage.Book.Title} - file deleted",
+                    Description = deleteMessage.BookFile.Path
+                }
+            };
 
             var payload = CreatePayload("Book File Deleted", attachments);
 
@@ -144,14 +144,14 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnHealthIssue(HealthCheck.HealthCheck healthCheck)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Title = healthCheck.Source.Name,
-                                      Text = healthCheck.Message,
-                                      Color = healthCheck.Type == HealthCheck.HealthCheckResult.Warning ? (int)DiscordColors.Warning : (int)DiscordColors.Danger
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = healthCheck.Source.Name,
+                    Text = healthCheck.Message,
+                    Color = healthCheck.Type == HealthCheck.HealthCheckResult.Warning ? (int)DiscordColors.Warning : (int)DiscordColors.Danger
+                }
+            };
 
             var payload = CreatePayload("Health Issue", attachments);
 
@@ -161,13 +161,13 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnBookRetag(BookRetagMessage message)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Title = BOOK_RETAGGED_TITLE,
-                                      Text = message.Message
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Title = BOOK_RETAGGED_TITLE,
+                    Text = message.Message
+                }
+            };
 
             var payload = CreatePayload($"Track file tags updated: {message.Message}", attachments);
 
@@ -178,7 +178,7 @@ namespace NzbDrone.Core.Notifications.Discord
         {
             var attachments = new List<Embed>
             {
-                new Embed
+                new ()
                 {
                     Description = message.Message,
                     Title = message.SourceTitle,
@@ -195,7 +195,7 @@ namespace NzbDrone.Core.Notifications.Discord
         {
             var attachments = new List<Embed>
             {
-                new Embed
+                new ()
                 {
                     Description = message.Message,
                     Title = message.Book?.Title ?? message.Message,
@@ -211,32 +211,32 @@ namespace NzbDrone.Core.Notifications.Discord
         public override void OnApplicationUpdate(ApplicationUpdateMessage updateMessage)
         {
             var attachments = new List<Embed>
-                              {
-                                  new Embed
-                                  {
-                                      Author = new DiscordAuthor
-                                      {
-                                          Name = Settings.Author.IsNullOrWhiteSpace() ? Environment.MachineName : Settings.Author,
-                                          IconUrl = "https://raw.githubusercontent.com/Readarr/Readarr/develop/Logo/256.png"
-                                      },
-                                      Title = APPLICATION_UPDATE_TITLE,
-                                      Timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
-                                      Color = (int)DiscordColors.Standard,
-                                      Fields = new List<DiscordField>()
-                                      {
-                                          new DiscordField()
-                                          {
-                                              Name = "Previous Version",
-                                              Value = updateMessage.PreviousVersion.ToString()
-                                          },
-                                          new DiscordField()
-                                          {
-                                              Name = "New Version",
-                                              Value = updateMessage.NewVersion.ToString()
-                                          }
-                                      },
-                                  }
-                              };
+            {
+                new ()
+                {
+                    Author = new DiscordAuthor
+                    {
+                        Name = Settings.Author.IsNullOrWhiteSpace() ? Environment.MachineName : Settings.Author,
+                        IconUrl = "https://raw.githubusercontent.com/Readarr/Readarr/develop/Logo/256.png"
+                    },
+                    Title = APPLICATION_UPDATE_TITLE,
+                    Timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
+                    Color = (int)DiscordColors.Standard,
+                    Fields = new List<DiscordField>()
+                    {
+                        new ()
+                        {
+                            Name = "Previous Version",
+                            Value = updateMessage.PreviousVersion.ToString()
+                        },
+                        new ()
+                        {
+                            Name = "New Version",
+                            Value = updateMessage.NewVersion.ToString()
+                        }
+                    },
+                }
+            };
 
             var payload = CreatePayload(null, attachments);
 
