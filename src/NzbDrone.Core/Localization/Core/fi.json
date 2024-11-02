@@ -297,7 +297,7 @@
     "ResetAPIKeyMessageText": "Haluatko varmasti korvata rajapinnan avaimen uudella?",
     "Restart": "Käynnistä uudelleen",
     "RestartNow": "Käynnistä uudelleen nyt",
-    "RestartReadarr": "Käynnistä Radarr uudelleen",
+    "RestartReadarr": "Käynnistä {appName} uudelleen",
     "Restore": "Palauta",
     "RestoreBackup": "Palauta varmuuskopio",
     "Result": "Tulos",

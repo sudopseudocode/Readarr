@@ -66,7 +66,7 @@
     "Connections": "連接",
     "Formats": "格式",
     "Title": "標題",
-    "UpdateMechanismHelpText": "使用 Prowlarr內建的更新程式或是腳本文件",
+    "UpdateMechanismHelpText": "使用 {appName}內建的更新程式或是腳本文件",
     "Remove": "移除",
     "Updates": "更新",
     "DownloadClients": "下載用戶端",
